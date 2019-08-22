@@ -1,0 +1,46 @@
+site_name: 中间件
+
+
+nav: 
+  - 工具:
+    - 一个小工具帮你搞定实时监控Nginx服务器: nginx/01.md
+# pip install mkdocs-material
+theme:
+  language: 'en'
+  name: 'material'
+  palette:
+    primary: 'teal'
+    accent: 'white'
+
+
+extra_css:
+  - 'css/app.css'
+
+
+
+
+
+# pip install pygments
+# pip install pymdown-extensions
+markdown_extensions:
+  - admonition
+  - smarty
+  - codehilite:
+      guess_lang: false
+      linenums: true
+  - footnotes
+  - meta
+  - toc:
+      permalink: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.critic
+  - tables
+  - pymdownx.mark
+
+
