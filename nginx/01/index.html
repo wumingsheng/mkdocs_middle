@@ -85,6 +85,10 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
+      <a href="#_1" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid">
@@ -203,9 +207,57 @@
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        一个小工具帮你搞定实时监控Nginx服务器
+      </label>
+    
     <a href="./" title="一个小工具帮你搞定实时监控Nginx服务器" class="md-nav__link md-nav__link--active">
       一个小工具帮你搞定实时监控Nginx服务器
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="主要的功能" class="md-nav__link">
+    主要的功能
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linuxngxtop" title="在Linux上安装ngxtop" class="md-nav__link">
+    在Linux上安装ngxtop
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ngxtop" title="ngxtop使用详解" class="md-nav__link">
+    ngxtop使用详解
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ngxtop_1" title="ngxtop实践" class="md-nav__link">
+    ngxtop实践
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -222,6 +274,56 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="主要的功能" class="md-nav__link">
+    主要的功能
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linuxngxtop" title="在Linux上安装ngxtop" class="md-nav__link">
+    在Linux上安装ngxtop
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ngxtop" title="ngxtop使用详解" class="md-nav__link">
+    ngxtop使用详解
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ngxtop_1" title="ngxtop实践" class="md-nav__link">
+    ngxtop实践
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
@@ -232,6 +334,75 @@
                 
                 <p>Linux运维工程师的首要职责就是保证业务7 x 24小时稳定的运行，监控Web服务器对于查看网站上发生的情况至关重要。关注最多的便是日志变动，查看实时日志文件变动大家第一反应应该是&rsquo;tail -f /path/to/log&rsquo;命令吧，但是如果每个网站的访问日志都是使用这种方式查看也是相当崩溃的，今天小编就跟大家分享一个强大的Nginx日志监控工具。</p>
 <p>ngxtop是一个基于python的程序，可以在Python上安装。ngxtop通过实时解析nginx访问日志，并将结果（nginx服务器的有用指标）输出到终端。</p>
+<p><img alt="" src="../../images/1.png" /></p>
+<h2 id="_1">主要的功能<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>当前有效请求</li>
+<li>总请求计数摘要</li>
+<li>按状态代码提供的总请求数（2xx，3xx，4xx，5xx）</li>
+<li>发送平均字节</li>
+<li>顶级远程地址</li>
+</ul>
+<p>不仅能实时监控Nginx日志的访问还可以对以前的日志进行排查整理。</p>
+<h2 id="linuxngxtop">在Linux上安装ngxtop<a class="headerlink" href="#linuxngxtop" title="Permanent link">&para;</a></h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-6.noarch.rpm
+rpm -ivh epel-release-7-6.noarch.rpm
+
+然后执行以下命令安装pip
+yum install python-pip
+
+最后使用下面安装ngxtop
+pip install ngxtop
+</pre></div>
+</td></tr></table>
+
+<h2 id="ngxtop">ngxtop使用详解<a class="headerlink" href="#ngxtop" title="Permanent link">&para;</a></h2>
+<div class="admonition example">
+<p class="admonition-title">用法</p>
+<ol>
+<li>ngxtop [选项]</li>
+<li>ngxtop [选项]（print | top | avg | sum）<var></li>
+<li>ngxtop info</li>
+</ol>
+</div>
+<p>选项：</p>
+<p><img alt="" src="../../images/2.png" /></p>
+<h2 id="ngxtop_1">ngxtop实践<a class="headerlink" href="#ngxtop_1" title="Permanent link">&para;</a></h2>
+<p>1.使用ngxtop命令查看请求计数摘要，请求的URI，状态码请求的数量。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ ngxtop
+</pre></div>
+</td></tr></table>
+
+<p>2.检查顶级客户端的IP</p>
+<p>查看谁向你的Nginx服务器发出大量请求。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>ngxtop top remote_addr
+</pre></div>
+</td></tr></table>
+
+<p>3.仅显示出404的HTTP请求</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>ngxtop -i<span class="s1">&#39;status&gt; = 404&#39;</span>
+</pre></div>
+</td></tr></table>
+
+<p>4.分析access.log</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>ngxtop -l /path/access.log
+</pre></div>
+</td></tr></table>
+
+<p>5.解析Apache的offline access.log</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>ngxtop -f common -l /path/access.log
+</pre></div>
+</td></tr></table>
+
+<p>另外你可以可以使用多种组合来过滤access.log以获取有用的数据</p>
+<p><a href="https://github.com/lebinh/ngxtop">Github地址</a></p>
                 
                   
                 
